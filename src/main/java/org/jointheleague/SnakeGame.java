@@ -145,16 +145,25 @@ public class SnakeGame extends ReactionFeature {
         	}
         	snake.makeStep(Direction.DOWN);
         }
-        if((snake.getBody().getFirst().getX()==apple.getX()&&snake.getBody().getFirst().getY()==apple.getY())||snake.getBody().get(1).getX()==apple.getX()&&snake.getBody().get(1).getY()==apple.getY()) {
-        	snake.setEat(true);
-        	generateApple();
-        }
+        System.out.println(apple.getX());
+        System.out.println(apple.getY());
+        System.out.println(snake.getBody().getFirst().getX());
+        System.out.println(snake.getBody().getFirst().getY());
+        for (Body segment : snake.getBody()) {
+			if(segment.getY()==apple.getX()&&segment.getX()==apple.getY()) {
+				snake.setEat(true);
+	        	generateApple();
+			}
+		}
         if(!snake.isCrashed()) {
     		event.getChannel().sendMessage(drawBoard());
         }
         else {
         	inUpdate = false;
+        	m.delete();
     		event.getChannel().sendMessage("You crashed. :(");
+    	    inSnakeGame = false;
+    	    inSnakeGameStartup = false;
         }
     }
 

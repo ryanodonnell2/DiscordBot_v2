@@ -46,7 +46,7 @@ public class DiscordBot {
 
 		//add features
 		addFeature(new GetUTC(channelName));
-		addFeature(new SendEmbed(channelName));
+		addFeature(new SendEmbed(channelName, api.getYourself()));
 		addFeature(new SnakeGame(channelName, api.getYourself()));
 //		addFeature(new RandomNumber(channelName));
 //		addFeature(new CurrentTime(channelName));
